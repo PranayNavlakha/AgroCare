@@ -55,7 +55,7 @@ font-family:'Times New Roman', Times, serif;
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const flip = true; // whether to flip the webcam
+        const flip = false; // whether to flip the webcam
         webcam = new tmImage.Webcam(300, 300, flip); // width, height, flip
         await webcam.setup({ facingMode: "environment" }); // request access to the webcam
         await webcam.play();
@@ -71,7 +71,9 @@ font-family:'Times New Roman', Times, serif;
 
     async function loop() {
         webcam.update(); // update the webcam frame
+        setTimeout(async () => {
         await predict();
+    }, 1000);
         window.requestAnimationFrame(loop);
     }
 

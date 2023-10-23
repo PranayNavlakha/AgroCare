@@ -71,9 +71,7 @@ font-family:'Times New Roman', Times, serif;
 
     async function loop() {
         webcam.update(); // update the webcam frame
-        setTimeout(async () => {
         await predict();
-    }, 3000);
         window.requestAnimationFrame(loop);
     }
 
@@ -85,7 +83,7 @@ font-family:'Times New Roman', Times, serif;
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2)*100;
             labelContainer.childNodes[i].innerHTML = classPrediction+"%";
-        }
+        }, 2000);
     }
 </script></div>
 </center>

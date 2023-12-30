@@ -1,0 +1,124 @@
+<html>
+    <head><script src="https://kit.fontawesome.com/c99caa8da7.js" crossorigin="anonymous"></script>
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'></head>
+<body>
+        <style>
+        * {
+          box-sizing: border-box;
+        }
+        #image-container img {
+        border: 4px solid burlywood;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    #label-container{
+        color: teal;
+        font-family: 'Poppins';
+        font-weight: bold;
+    }
+        .btns {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 40px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #47b2e4;
+  color: #47b2e4;
+}
+
+.btns:hover {
+  background: #47b2e4;
+  border: 2px solid #47b2e4;
+  color: white;
+}
+#label-container{
+font-size: 20;
+font-family:'Times New Roman', Times, serif;
+}
+</style><center>
+    <div><button type="button" onclick="init()" class="btns"><i class="fas fa-upload"></i> Upload</button>
+        <input type="file" accept="image/*" id="imageUpload" capture="camera" style="display:none;" onchange="handleImageUpload(event)">
+        <div id="image-container"></div>
+        <div id="label-container"></div></div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+        <script type="text/javascript">
+            // the link to your model provided by Teachable Machine export panel
+            const URL = "https://teachablemachine.withgoogle.com/models/GONLpXaCr/";
+
+    let model, maxPredictions;
+
+    // Load the image model
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // load the model and metadata
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        const imageUpload = document.getElementById("imageUpload");
+        imageUpload.click();
+    }
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            predictImage(file);
+        }
+    }
+
+    async function predictImage(file) {
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = async function (e) {
+            img.src = e.target.result;
+            img.onload = async function () {
+                const predictions = await model.predict(img);
+
+                // Display the uploaded image
+                displayImage(img);
+
+                // Display only the top prediction class name
+                displayTopPrediction(predictions);
+            };
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function displayImage(img) {
+        const imageContainer = document.getElementById("image-container");
+        imageContainer.innerHTML = "";
+        
+        const imageElement = document.createElement("img");
+        imageElement.src = img.src;
+        imageElement.width = 200; // Adjust the width as needed
+        imageElement.style.borderRadius = 5;
+        imageContainer.appendChild(imageElement);
+    }
+
+    function displayTopPrediction(predictions) {
+        const labelContainer = document.getElementById("label-container");
+        labelContainer.innerHTML = "";
+
+        // Find the index of the prediction with the highest probability
+        const maxIndex = predictions.reduce((maxIndex, prediction, currentIndex, array) => {
+            return prediction.probability > array[maxIndex].probability ? currentIndex : maxIndex;
+        }, 0);
+
+        const topPrediction = predictions[maxIndex];
+        const classPrediction = topPrediction.className;
+        const predictionElement = document.createElement("div");
+        predictionElement.innerText = classPrediction;
+        labelContainer.appendChild(predictionElement);
+    }
+        </script></div></center>
+</body>
+</html>

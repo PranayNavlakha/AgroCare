@@ -151,9 +151,19 @@
           float: left;
           width: 100/4%;
           padding: 10px;
-          height: 750px; /* Should be removed. Only for demonstration */
+         
         }
-        .s{height: 300px;}
+         .column:nth-child(1) {
+    height: 750px;
+  }
+
+  .column:nth-child(2) {
+    height: 750px;
+  }
+
+  .column:nth-child(3) {
+    height: 300px;
+  }
         /* Clear floats after the columns */
         .row:after {
           content: "";

@@ -40,7 +40,7 @@ font-size: 20;
 font-family:'Times New Roman', Times, serif;
 }
 </style><center>
-    <div><button type="button" onclick="init()" class="btns"><i class="fas fa-upload"></i> Upload</button>
+    <div><button type="button" onclick="init()" class="btns"><i class="fas fa-upload"></i> Upload</button><br>
         <input type="file" accept="image/*" id="imageUpload" capture="camera" style="display:none;" onchange="handleImageUpload(event)">
         <div id="image-container"></div>
         <div id="label-container"></div></div>
@@ -99,7 +99,8 @@ font-family:'Times New Roman', Times, serif;
         
         const imageElement = document.createElement("img");
         imageElement.src = img.src;
-        imageElement.width = 200; // Adjust the width as needed
+        imageElement.width = 250; // Adjust the width as needed
+        imageElement.height = 300;
         imageElement.style.borderRadius = 5;
         imageContainer.appendChild(imageElement);
     }

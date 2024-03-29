@@ -1,0 +1,19 @@
+Rainfall (per annum):
+Low: < 25 cm
+Moderate: 25 - 50 cm
+High: 50 - 100 cm
+
+Humidity (%):
+Low: <= 40%
+Moderate: 40 - 70%
+High: >=70%
+
+Sunlight (Period of time):
+Short: <=12 hr
+Moderate: 12 - 14 hr
+Long: >=14 hr
+
+Temperature:
+Low: <= 10 degree celsius
+Moderate: 10 - 25 degree celsius
+High: >= 25 degree celsius

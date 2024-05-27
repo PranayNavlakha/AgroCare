@@ -149,15 +149,15 @@
       resultDiv.innerHTML += `<button class="btn"><i class="fa fa-wifi" style="color: white;"></i>&nbsp;Connect</button>`;
 
       document.getElementById("btn").addEventListener("click", function() {
-                var crop = filteredCrops[0].Crop.toLowerCase();
+                var crop = filteredCrops[0].Crop;
                 switch (crop) {
-                    case "millet":
+                    case "Millets":
                         window.location.href = "http://192.168.173.132/millet?";
                         break;
-                    case "maize":
+                    case "Maize":
                         window.location.href = "http://192.168.173.132/maize?";
                         break;
-                    case "jute":
+                    case "jJute":
                         window.location.href = "http://192.168.173.132/jute?";
                         break;
                     default:

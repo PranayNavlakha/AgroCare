@@ -148,7 +148,7 @@
       resultDiv.innerHTML += `<h2 class="r" align="center">&#127806;&nbsp;${filteredCrops[0].Crop}</h2>`;
       resultDiv.innerHTML += `<button class="btn"><i class="fa fa-wifi" style="color: white;"></i>&nbsp;Connect</button>`;
 
-      document.getElementById("connectBtn").addEventListener("click", function() {
+      document.getElementById("btn").addEventListener("click", function() {
                 var crop = filteredCrops[0].Crop.toLowerCase();
                 switch (crop) {
                     case "millet":

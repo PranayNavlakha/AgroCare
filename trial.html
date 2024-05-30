@@ -147,6 +147,7 @@
     if (filteredCrops.length > 0) {
       resultDiv.innerHTML += `<h2 class="r" align="center">&#127806;&nbsp;${filteredCrops[0].Crop}</h2>`;
       resultDiv.innerHTML += `<button id = "btn" class="btn"><i class="fa fa-wifi" style="color: white;"></i>&nbsp;Connect</button>`;
+      resultDiv.innerHTML += `<br><br>`;
       resultDiv.innerHTML += `<button id = "btn2" class="sb"><i class="	fa fa-shopping-cart" style="color: white;"></i>&nbsp;Already Produced? Sell and Earn!</button>`;
 
       document.getElementById("btn").addEventListener("click", function() {
